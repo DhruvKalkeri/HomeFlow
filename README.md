@@ -1,24 +1,47 @@
 # HomeFlow — Engineering Project Portfolio
 
-Responsive portfolio documenting the ESP32 HomeFlow project.
+A responsive engineering case study for the HomeFlow ESP32 smart-home prototype.
 
-## Media
-- `assets/images/homeflow-prototype.jpg`: user-supplied prototype photograph.
-- `assets/images/homeflow-dashboard.jpg`: user-supplied website screenshot.
-- YouTube demonstration: https://youtu.be/DlQpEDiLtm8
-- Third-party conceptual relay wiring reference from CircuitDigest is clearly labelled as not the verified HomeFlow wiring.
+## Project media
 
-## Supplied firmware facts
-- Lamp: GPIO 27
-- Speaker: GPIO 26
-- Coffee machine: GPIO 25
-- Active-LOW relay control: LOW = ON; HIGH = OFF
-- Routes: `/lamp/on`, `/lamp/off`, `/speaker/on`, `/speaker/off`, `/coffee/on`, `/coffee/off`
+### Actual HomeFlow evidence
+- `assets/images/homeflow-prototype.webp` — user-supplied photo of the branded HomeFlow prototype enclosure.
+- `assets/images/homeflow-dashboard.webp` — user-supplied HomeFlow browser dashboard screenshot.
+- YouTube demonstration: https://youtu.be/eD1jUGDrwWQ
 
-Wi-Fi credentials are deliberately not published. The supplied firmware excerpt shows manual ON/OFF HTTP routes. Timer/Schedule navigation is visible in the screenshot, but timer logic was not included in the supplied sketch.
+### External reference media (not photographs of this build)
+- ESP32 development-board photograph: Ubahnverleih, Wikimedia Commons, CC0 1.0. [File page](https://commons.wikimedia.org/wiki/File:ESP32_Espressif_ESP-WROOM-32_Dev_Board.jpg)
+- Single-channel relay-module photograph: Suyash Dwivedi, Wikimedia Commons, CC BY-SA 4.0. [File page and license](https://commons.wikimedia.org/wiki/File:SRD-05VDC-SL-C_5V_one-channel_relay_module.jpg)
+- Conceptual ESP32-to-relay wiring diagram: [ESP32IO relay tutorial](https://esp32io.com/tutorials/esp32-relay)
 
-## Publish
-GitHub repository Settings → Pages → Deploy from a branch → `main` → `/(root)` → Save.
+External reference images are labelled illustrative. They are not represented as the exact HomeFlow board, relay module, or circuit assembly.
+
+## Firmware facts from the supplied sketch
+
+| Appliance | GPIO | ON route | OFF route |
+|---|---:|---|---|
+| Lamp | 27 | `/lamp/on` | `/lamp/off` |
+| Speaker | 26 | `/speaker/on` | `/speaker/off` |
+| Coffee machine | 25 | `/coffee/on` | `/coffee/off` |
+
+- Platform: ESP32 using Arduino IDE / Arduino C++.
+- Network: ESP32 joins the configured Wi-Fi network.
+- Server: `WebServer server(80)`.
+- Relay logic in the supplied code: `LOW` = ON and `HIGH` = OFF.
+- Each handler returns an HTTP 200 plain-text response.
+- Wi-Fi credentials are intentionally not included in public source.
+
+The supplied firmware excerpt documents manual ON/OFF control. The website screenshot shows Timer and Schedule navigation, but timer/scheduling logic was not included in the firmware excerpt. Those features are not described as verified firmware functionality.
+
+## GitHub Pages deployment
+
+1. Open repository **Settings → Pages**.
+2. Under **Build and deployment**, choose **Deploy from a branch**.
+3. Select branch `main` and folder `/(root)`.
+4. Save and wait for deployment.
+
+Expected site URL: https://dhruvkalkeri.github.io/HomeFlow/
 
 ## Safety
-The external diagram is conceptual only. Do not copy mains wiring blindly. Verify relay ratings, power supply, enclosure, fusing, isolation and AC wiring with a qualified person.
+
+The wiring diagram is a general educational reference, not the verified HomeFlow schematic. Do not copy mains wiring blindly. Confirm relay ratings, isolation, enclosure, fusing, supply requirements and AC wiring with a qualified person.
